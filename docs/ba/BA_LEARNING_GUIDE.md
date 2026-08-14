@@ -27,6 +27,8 @@ Mục tiêu đọc:
 - Nắm quy trình AS-IS trước khi có hệ thống.
 - Nắm quy trình TO-BE sau khi triển khai TMS.
 - Thấy actor nào thao tác gì và hệ thống phản hồi ra sao.
+- Nhìn được pain point nào trong AS-IS sẽ trở thành requirement hoặc business rule trong TO-BE.
+- Hiểu dữ liệu nào được chuẩn hóa khi chuyển từ Excel/email sang TMS.
 
 ## Giai Đoạn 3 - Đọc URD
 
