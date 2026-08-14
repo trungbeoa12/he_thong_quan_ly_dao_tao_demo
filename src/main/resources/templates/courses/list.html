@@ -45,6 +45,31 @@
                 </tbody>
             </table>
         </div>
+
+        <script th:inline="javascript">
+            const courseKeyword = /*[[${keyword}]]*/ "";
+            const courseApiUrl = courseKeyword
+                ? `/api/courses?keyword=${encodeURIComponent(courseKeyword)}`
+                : "/api/courses";
+
+            fetch(courseApiUrl, {
+                headers: {
+                    Accept: "application/json"
+                }
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Không gọi được API khóa học: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((courses) => {
+                    console.log("Dữ liệu API /api/courses:", courses);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        </script>
     </div>
 </div>
 </body>
