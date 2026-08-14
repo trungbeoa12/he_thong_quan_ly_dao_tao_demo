@@ -1,33 +1,33 @@
 # UAT Test Cases
 
-## Scenario 1 - Training Admin Creates Course
+## Scenario 1 - Training Admin Tạo Course
 
-Expected: Course is created and available for class opening.
+Kết quả kỳ vọng: Course được tạo và sẵn sàng để mở class.
 
-## Scenario 2 - Training Admin Opens Class
+## Scenario 2 - Training Admin Mở Class
 
-Expected: Class is created with instructor, schedule, capacity, and registration window.
+Kết quả kỳ vọng: Class được tạo với instructor, schedule, capacity và registration window.
 
-## Scenario 3 - Employee Registers
+## Scenario 3 - Employee Đăng Ký
 
-Expected: Employee can register during the open registration window.
+Kết quả kỳ vọng: Employee có thể đăng ký trong registration window.
 
-## Scenario 4 - Manager Approves
+## Scenario 4 - Manager Approve
 
-Expected: Manager can approve or reject pending registration.
+Kết quả kỳ vọng: Manager có thể approve hoặc reject pending registration.
 
-## Scenario 5 - Instructor Records Attendance
+## Scenario 5 - Instructor Ghi Attendance
 
-Expected: Attendance is saved and contributes to actual training hours.
+Kết quả kỳ vọng: Attendance được lưu và đóng góp vào actual training hours.
 
-## Scenario 6 - Training Admin Enters Result
+## Scenario 6 - Training Admin Nhập Result
 
-Expected: Result and certificate details are saved for registered learners.
+Kết quả kỳ vọng: Result và certificate detail được lưu cho learner đã đăng ký.
 
-## Scenario 7 - Finance Records Cost
+## Scenario 7 - Finance Ghi Cost
 
-Expected: Cost is categorized and included in reports.
+Kết quả kỳ vọng: Cost được phân loại và đưa vào report.
 
-## Scenario 8 - Management Views Report
+## Scenario 8 - Ban Lãnh Đạo Xem Report
 
-Expected: KPI dashboard displays hours, costs, completion, and pass rate.
+Kết quả kỳ vọng: KPI dashboard hiển thị hours, costs, completion và pass rate.

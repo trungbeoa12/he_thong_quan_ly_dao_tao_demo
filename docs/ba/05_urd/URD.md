@@ -1,6 +1,6 @@
 # User Requirement Document
 
-## 1. Document Information
+## 1. Thông Tin Tài Liệu
 
 Document: TMS URD  
 Phase: Foundation draft  
@@ -8,81 +8,81 @@ Status: Initial
 
 ## 2. Background
 
-Training is currently managed using Excel and manual communication.
+Hoạt động đào tạo hiện được quản lý bằng Excel và trao đổi thủ công.
 
 ## 3. Business Problem
 
-The organization cannot reliably trace training history, hours, costs, instructors, and results.
+Doanh nghiệp chưa thể trace đáng tin cậy lịch sử đào tạo, số giờ đào tạo, chi phí, giảng viên và kết quả học tập.
 
-## 4. Business Objective
+## 4. Mục Tiêu Nghiệp Vụ
 
-Create a centralized system for managing and reporting enterprise training activities.
+Xây dựng hệ thống tập trung để quản lý và báo cáo toàn bộ hoạt động đào tạo doanh nghiệp.
 
 ## 5. Scope
 
-- Organization and employee data
-- Course and class management
+- Dữ liệu organization và employee
+- Quản lý course và class
 - Schedule, registration, approval
 - Attendance, result, cost
-- Reports and analytics
-- Audit and security
+- Report và analytics
+- Audit và security
 
-## 6. Out of Scope
+## 6. Out Of Scope
 
-- Payroll processing
-- Full HR core system
-- Learning content hosting
-- External payment integration
+- Xử lý payroll
+- Hệ thống HR core đầy đủ
+- Hosting nội dung e-learning
+- Tích hợp thanh toán bên ngoài
 
 ## 7. Stakeholders
 
-HR, Training Department, Employee, Instructor, Line Manager, Finance, IT, System Admin, Management.
+HR, Training Department, Employee, Instructor, Line Manager, Finance, IT, System Admin, Ban lãnh đạo.
 
 ## 8. Business Process
 
-The TO-BE process is documented in `../04_to_be/to_be_process.md`.
+TO-BE process được mô tả tại `../04_to_be/to_be_process.md`.
 
 ## 9. Business Requirements
 
-| Requirement ID | Requirement |
+| Requirement ID | Yêu cầu |
 | --- | --- |
-| BR-001 | The system allows Training Admin to create training courses. |
-| BR-002 | The system allows multiple classes to be opened from one course. |
-| BR-003 | The system allows employees to register for open classes. |
-| BR-004 | The system supports manager approval when required. |
-| BR-005 | The system records attendance by session. |
-| BR-006 | The system records training results and certificate information. |
-| BR-007 | The system records training costs by cost type. |
-| BR-008 | The system provides training KPI dashboards and reports. |
-| BR-009 | The system logs important user actions for audit. |
-| BR-010 | The system controls access by role. |
+| BR-001 | Hệ thống cho phép Training Admin tạo training course. |
+| BR-002 | Hệ thống cho phép mở nhiều class từ một course. |
+| BR-003 | Hệ thống cho phép employee đăng ký class đang mở. |
+| BR-004 | Hệ thống hỗ trợ manager approval khi cần. |
+| BR-005 | Hệ thống ghi nhận attendance theo session. |
+| BR-006 | Hệ thống ghi nhận training result và thông tin certificate. |
+| BR-007 | Hệ thống ghi nhận training cost theo cost type. |
+| BR-008 | Hệ thống cung cấp dashboard và report KPI đào tạo. |
+| BR-009 | Hệ thống ghi audit log cho thao tác quan trọng. |
+| BR-010 | Hệ thống kiểm soát truy cập theo role. |
 
 ## 10. Business Rules
 
-See `../07_business_rules/business_rules.md`.
+Xem `../07_business_rules/business_rules.md`.
 
 ## 11. Reporting Requirements
 
-Training hours, training cost, completion rate, pass rate, and average KPIs must be filterable by period and organization attributes.
+Training hours, training cost, completion rate, pass rate và average KPI phải filter được theo kỳ báo cáo và thuộc tính tổ chức.
 
 ## 12. Data Requirements
 
-The system must support demo data for 2025 and 2026.
+Hệ thống phải hỗ trợ demo data cho năm 2025 và 2026.
 
 ## 13. Non-functional Requirements
 
-Readable source code, role authorization, validation, pagination, audit logging, and maintainable database migrations.
+Source code dễ đọc, có role authorization, validation, pagination, audit logging và database migration dễ bảo trì.
 
 ## 14. Assumptions
 
-Employee master data is available from HR or seed data in this demo.
+Employee master data có thể lấy từ HR hoặc seed data trong bản demo.
 
 ## 15. Constraints
 
-The frontend uses Thymeleaf and Bootstrap. No React, Vue, or Angular.
+Frontend dùng Thymeleaf và Bootstrap. Không dùng React, Vue hoặc Angular.
 
 ## 16. Acceptance Criteria
 
-- Users can log in by role.
-- Business data can be traced from UI to database after later phases.
-- Reports can be validated by SQL exercises after demo data generation.
+- User có thể login theo role.
+- Sau các phase nghiệp vụ, business data có thể trace từ UI tới database.
+- Sau khi sinh demo data, report có thể được kiểm chứng bằng truy vấn SQL.

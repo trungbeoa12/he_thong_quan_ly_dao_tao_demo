@@ -2,95 +2,95 @@
 
 ## department
 
-Purpose: stores organization hierarchy.
+Mục đích: lưu cơ cấu tổ chức và quan hệ phân cấp phòng ban.
 
-| Field | Type | Mandatory | Meaning | Validation |
+| Field | Type | Mandatory | Ý nghĩa nghiệp vụ | Validation |
 | --- | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key | Generated |
-| department_code | varchar | Yes | Business code | Unique |
-| department_name | varchar | Yes | Display name | 2-255 chars |
-| parent_department_id | bigint | No | Parent department | Must reference department.id |
-| department_type | varchar | Yes | HO, DIVISION, BRANCH, TEAM | Controlled values |
-| status | varchar | Yes | ACTIVE/INACTIVE | Controlled values |
-| created_at | timestamp | Yes | Creation time | System generated |
-| updated_at | timestamp | Yes | Last update time | System generated |
+| id | bigint | Yes | Khóa chính | Generated |
+| department_code | varchar | Yes | Mã phòng ban/đơn vị | Unique |
+| department_name | varchar | Yes | Tên hiển thị của phòng ban | 2-255 ký tự |
+| parent_department_id | bigint | No | Phòng ban cha | Tham chiếu `department.id` |
+| department_type | varchar | Yes | Loại đơn vị: HO, DIVISION, BRANCH, TEAM | Controlled values |
+| status | varchar | Yes | Trạng thái ACTIVE/INACTIVE | Controlled values |
+| created_at | timestamp | Yes | Thời điểm tạo | System generated |
+| updated_at | timestamp | Yes | Thời điểm cập nhật cuối | System generated |
 
 ## employee
 
-Purpose: stores employees and learners.
+Mục đích: lưu nhân viên và học viên.
 
-| Field | Type | Mandatory | Meaning | Validation |
+| Field | Type | Mandatory | Ý nghĩa nghiệp vụ | Validation |
 | --- | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key | Generated |
-| employee_code | varchar | Yes | HR employee code | Unique |
-| full_name | varchar | Yes | Employee full name | 2-255 chars |
-| email | varchar | Yes | Work email | Email format, unique |
-| department_id | bigint | Yes | Owning department | FK to department |
-| employee_level | varchar | Yes | Staff, specialist, manager | Controlled values |
-| status | varchar | Yes | Employment status | ACTIVE/INACTIVE |
+| id | bigint | Yes | Khóa chính | Generated |
+| employee_code | varchar | Yes | Mã nhân viên từ HR | Unique |
+| full_name | varchar | Yes | Họ tên nhân viên | 2-255 ký tự |
+| email | varchar | Yes | Email công việc | Đúng định dạng email, unique |
+| department_id | bigint | Yes | Đơn vị trực thuộc | FK tới `department` |
+| employee_level | varchar | Yes | Cấp bậc nhân viên | Controlled values |
+| status | varchar | Yes | Trạng thái làm việc | ACTIVE/INACTIVE |
 
 ## instructor
 
-Purpose: stores internal and external instructors.
+Mục đích: lưu giảng viên nội bộ và bên ngoài.
 
-| Field | Type | Mandatory | Meaning | Validation |
+| Field | Type | Mandatory | Ý nghĩa nghiệp vụ | Validation |
 | --- | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key | Generated |
-| instructor_code | varchar | Yes | Instructor code | Unique |
+| id | bigint | Yes | Khóa chính | Generated |
+| instructor_code | varchar | Yes | Mã giảng viên | Unique |
 | instructor_type | varchar | Yes | INTERNAL/EXTERNAL | Controlled values |
-| hourly_rate | numeric | Yes | Cost rate | Greater than or equal to 0 |
-| status | varchar | Yes | Availability | ACTIVE/INACTIVE |
+| hourly_rate | numeric | Yes | Đơn giá giảng dạy theo giờ | Lớn hơn hoặc bằng 0 |
+| status | varchar | Yes | Trạng thái sẵn sàng giảng dạy | ACTIVE/INACTIVE |
 
 ## course
 
-Purpose: stores reusable training programs.
+Mục đích: lưu chương trình/khóa đào tạo dùng lại nhiều lần.
 
-| Field | Type | Mandatory | Meaning | Validation |
+| Field | Type | Mandatory | Ý nghĩa nghiệp vụ | Validation |
 | --- | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key | Generated |
-| course_code | varchar | Yes | Course code | Unique |
-| course_name | varchar | Yes | Course name | 2-255 chars |
-| category | varchar | Yes | Training domain | Controlled values |
+| id | bigint | Yes | Khóa chính | Generated |
+| course_code | varchar | Yes | Mã khóa học | Unique |
+| course_name | varchar | Yes | Tên khóa học | 2-255 ký tự |
+| category | varchar | Yes | Nhóm nội dung đào tạo | Controlled values |
 | training_type | varchar | Yes | INTERNAL/EXTERNAL | Controlled values |
 | training_method | varchar | Yes | OFFLINE/ONLINE/E_LEARNING/BLENDED | Controlled values |
-| default_duration_hours | numeric | Yes | Standard duration | Greater than 0 |
-| status | varchar | Yes | ACTIVE/INACTIVE | Controlled values |
+| default_duration_hours | numeric | Yes | Thời lượng mặc định | Lớn hơn 0 |
+| status | varchar | Yes | Trạng thái khóa học | ACTIVE/INACTIVE |
 
 ## training_class
 
-Purpose: stores actual opened classes for a course.
+Mục đích: lưu lớp đào tạo thực tế được mở từ một course.
 
-| Field | Type | Mandatory | Meaning | Validation |
+| Field | Type | Mandatory | Ý nghĩa nghiệp vụ | Validation |
 | --- | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key | Generated |
-| class_code | varchar | Yes | Class code | Unique |
-| course_id | bigint | Yes | Source course | FK to course |
-| instructor_id | bigint | Yes | Main instructor | FK to instructor |
-| start_date | date | Yes | Class start | Not after end_date |
-| end_date | date | Yes | Class end | Not before start_date |
-| max_participants | integer | Yes | Capacity | Greater than 0 |
-| class_status | varchar | Yes | Lifecycle state | PLANNED/OPEN/IN_PROGRESS/COMPLETED/CANCELLED |
+| id | bigint | Yes | Khóa chính | Generated |
+| class_code | varchar | Yes | Mã lớp | Unique |
+| course_id | bigint | Yes | Khóa học nguồn | FK tới `course` |
+| instructor_id | bigint | Yes | Giảng viên chính | FK tới `instructor` |
+| start_date | date | Yes | Ngày bắt đầu lớp | Không sau `end_date` |
+| end_date | date | Yes | Ngày kết thúc lớp | Không trước `start_date` |
+| max_participants | integer | Yes | Sức chứa lớp | Lớn hơn 0 |
+| class_status | varchar | Yes | Trạng thái vòng đời lớp | PLANNED/OPEN/IN_PROGRESS/COMPLETED/CANCELLED |
 
 ## users, authorities
 
-Purpose: Spring Security authentication and authorization skeleton.
+Mục đích: skeleton authentication và authorization của Spring Security.
 
-| Table | Primary Key | Meaning |
+| Table | Primary Key | Ý nghĩa |
 | --- | --- | --- |
-| users | username | Login account with BCrypt password |
-| authorities | username, authority | Role assignments such as ROLE_ADMIN |
+| users | username | Tài khoản login với BCrypt password |
+| authorities | username, authority | Role assignment như `ROLE_ADMIN` |
 
 ## audit_log
 
-Purpose: stores important user actions for enterprise audit.
+Mục đích: lưu các thao tác quan trọng để phục vụ audit trong project doanh nghiệp.
 
-| Field | Type | Mandatory | Meaning |
+| Field | Type | Mandatory | Ý nghĩa |
 | --- | --- | --- | --- |
-| id | bigint | Yes | Primary key |
-| username | varchar | Yes | Actor |
-| action | varchar | Yes | Action name |
-| module | varchar | Yes | Functional module |
-| object_id | varchar | No | Target record |
-| old_value | text | No | Before value |
-| new_value | text | No | After value |
-| created_at | timestamp | Yes | Audit time |
+| id | bigint | Yes | Khóa chính |
+| username | varchar | Yes | Người thực hiện |
+| action | varchar | Yes | Tên hành động |
+| module | varchar | Yes | Module chức năng |
+| object_id | varchar | No | Record bị tác động |
+| old_value | text | No | Giá trị trước thay đổi |
+| new_value | text | No | Giá trị sau thay đổi |
+| created_at | timestamp | Yes | Thời điểm ghi audit |

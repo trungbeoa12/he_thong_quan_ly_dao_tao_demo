@@ -1,13 +1,13 @@
 # Stakeholder Analysis
 
-| Stakeholder | Role | Needs | Pain Points | Responsibility | System Interaction |
+| Stakeholder | Vai trò | Nhu cầu | Pain Points | Trách nhiệm | Tương tác với hệ thống |
 | --- | --- | --- | --- | --- | --- |
-| HR | Policy owner | Training history and employee capability data | Manual Excel consolidation | Define HR rules | View reports and employee history |
-| Training Department | Training operator | Manage courses, classes, attendance, results | Hard to track registrations and costs | Operate training process | Create courses, classes, schedules, registrations |
-| Employee | Learner | Find courses and view results | Unclear schedule and history | Attend training | Register, view schedule, view results |
-| Instructor | Trainer | Class list and attendance tools | Manual attendance sheets | Teach and record attendance/results | View assigned classes, update attendance |
-| Line Manager | Approver | Team training visibility | Cannot easily monitor team hours/cost | Approve and monitor team learning | Approve registrations, view team reports |
-| Finance | Cost controller | Training cost detail | Cost data is scattered | Validate and report cost | View and record cost lines |
-| IT | System owner | Maintainable architecture | Manual reports and unmanaged files | Operate system | Deploy, monitor, support |
-| System Admin | Access manager | User and role control | No centralized permissions | Manage access | Manage users and roles |
-| Management | Sponsor | KPI and compliance visibility | Reports are late | Make decisions | View dashboards |
+| HR | Chủ sở hữu chính sách nhân sự | Lịch sử đào tạo và dữ liệu năng lực nhân viên | Tổng hợp Excel thủ công | Định nghĩa chính sách HR | Xem báo cáo và lịch sử đào tạo |
+| Training Department | Đơn vị vận hành đào tạo | Quản lý course, class, attendance, result | Khó theo dõi đăng ký và chi phí | Vận hành quy trình đào tạo | Tạo course, class, schedule, registration |
+| Employee | Học viên | Tìm khóa học và xem kết quả | Không rõ lịch học và lịch sử đào tạo | Tham gia đào tạo | Đăng ký, xem lịch học, xem kết quả |
+| Instructor | Giảng viên | Danh sách lớp và công cụ điểm danh | Điểm danh bằng file thủ công | Giảng dạy và ghi nhận attendance/result | Xem lớp được phân công, cập nhật attendance |
+| Line Manager | Người phê duyệt | Thấy tình hình đào tạo của team | Khó theo dõi giờ học/chi phí của nhân viên | Phê duyệt và giám sát đào tạo team | Approve registration, xem report team |
+| Finance | Kiểm soát chi phí | Chi tiết chi phí đào tạo | Dữ liệu chi phí phân tán | Kiểm tra và báo cáo chi phí | Xem và ghi nhận cost line |
+| IT | Đơn vị quản trị kỹ thuật | Kiến trúc dễ bảo trì | Báo cáo thủ công, dữ liệu file không kiểm soát | Vận hành hệ thống | Deploy, monitor, support |
+| System Admin | Quản trị truy cập | Quản lý user/role | Chưa có phân quyền tập trung | Quản lý quyền truy cập | Quản lý users và roles |
+| Ban lãnh đạo | Sponsor/Decision maker | KPI và compliance dashboard | Báo cáo chậm, khó kiểm chứng | Ra quyết định | Xem dashboard và analytics |

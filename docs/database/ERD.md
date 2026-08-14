@@ -92,4 +92,6 @@ erDiagram
     }
 ```
 
-The full logical model is described in `data_dictionary.md` and `table_relationship.md`.
+Sơ đồ trên mô tả logical ERD mục tiêu cho toàn bộ hệ thống TMS. Các bảng nghiệp vụ chưa được tạo trong Phase 0, nhưng đã được thiết kế để làm căn cứ cho các phase sau.
+
+Mô hình đầy đủ được giải thích thêm trong `data_dictionary.md` và `table_relationship.md`.

@@ -1,36 +1,36 @@
 # Training Management System - TMS
 
-TMS is an enterprise-style demo system for managing corporate training activities. The project is also a Business Analyst training case study, helping learners trace business requests through URD, SRS, API, database design, testing, UAT, and change request impact analysis.
+TMS là hệ thống demo quản lý đào tạo theo phong cách project doanh nghiệp. Dự án đồng thời là case study đào tạo Business Analyst, giúp học viên trace từ yêu cầu nghiệp vụ đến URD, SRS, API, database, SIT, UAT và phân tích Change Request.
 
-## Project Purpose
+## Mục Đích Dự Án
 
-The target business context is an organization with 3,000 to 5,000 employees, many departments, internal and external instructors, multiple training methods, training costs, attendance, results, and analytics across two demo years: 2025 and 2026.
+Bối cảnh nghiệp vụ mục tiêu là một doanh nghiệp có khoảng 3.000 đến 5.000 nhân viên, nhiều phòng ban, giảng viên nội bộ/bên ngoài, nhiều hình thức đào tạo, chi phí đào tạo, điểm danh, kết quả học tập và báo cáo phân tích trong 2 năm demo: 2025 và 2026.
 
-Phase 0 builds only the foundation. Business modules are intentionally implemented in later phases.
+Phase 0 chỉ xây dựng nền móng. Các module nghiệp vụ được triển khai ở những phase sau.
 
-## Architecture
+## Kiến Trúc
 
-Request flow:
+Luồng xử lý:
 
 `Controller -> Service -> Repository -> Database`
 
-Package structure:
+Cấu trúc package:
 
-- `config`: Spring and web configuration
-- `controller`: MVC and REST endpoints
-- `service`: business service contracts
-- `service.impl`: service implementations
-- `repository`: Spring Data repositories
-- `entity`: JPA entities
-- `dto`: DTO and API payload models
-- `mapper`: DTO/entity mapping
-- `exception`: global error handling
-- `security`: security helpers
-- `validation`: validation helpers
-- `util`: shared utilities
-- `report`: reporting support
+- `config`: cấu hình Spring, web, security
+- `controller`: MVC controller và REST endpoint
+- `service`: interface xử lý nghiệp vụ
+- `service.impl`: implementation của service
+- `repository`: truy cập dữ liệu bằng Spring Data JPA
+- `entity`: mô hình persistence ánh xạ database
+- `dto`: payload cho API/UI
+- `mapper`: chuyển đổi DTO/entity
+- `exception`: xử lý lỗi tập trung
+- `security`: helper bảo mật
+- `validation`: helper validate
+- `util`: tiện ích dùng chung
+- `report`: xử lý báo cáo
 
-## Technology Stack
+## Công Nghệ
 
 - Java 17
 - Spring Boot 3
@@ -40,26 +40,26 @@ Package structure:
 - Thymeleaf
 - Bootstrap 5
 - Flyway
-- PostgreSQL preferred, H2 available for local foundation smoke tests
+- PostgreSQL ưu tiên, H2 dùng cho smoke test local
 - Maven
 
-## Installation
+## Cài Đặt
 
 ```bash
 mvn clean test
 mvn spring-boot:run
 ```
 
-Open:
+Mở:
 
 - `http://localhost:8080/login`
 - `http://localhost:8080/api/health`
 
-## Database Setup
+## Cấu Hình Database
 
-By default the application uses an in-memory H2 database in PostgreSQL compatibility mode.
+Mặc định ứng dụng dùng H2 in-memory ở chế độ tương thích PostgreSQL.
 
-For PostgreSQL:
+Nếu dùng PostgreSQL:
 
 ```bash
 export DB_URL=jdbc:postgresql://localhost:5432/tms
@@ -69,9 +69,9 @@ export DB_DRIVER=org.postgresql.Driver
 mvn spring-boot:run
 ```
 
-Flyway migrations are located in `src/main/resources/db/migration`.
+Flyway migration nằm trong `src/main/resources/db/migration`.
 
-## Demo Accounts
+## Tài Khoản Demo
 
 | Username | Password | Role |
 | --- | --- | --- |
@@ -81,11 +81,9 @@ Flyway migrations are located in `src/main/resources/db/migration`.
 | employee01 | Employee@123 | EMPLOYEE |
 | manager01 | Manager@123 | MANAGER |
 
-Passwords are seeded as BCrypt hashes.
+Password được seed bằng BCrypt hash.
 
-## Modules
-
-Planned modules:
+## Module Dự Kiến
 
 - Organization
 - Employee
@@ -101,22 +99,23 @@ Planned modules:
 - Audit Log
 - Change Request simulation
 
-## BA Documentation
+## Tài Liệu BA
 
-BA documents live under `docs/ba`.
+Tài liệu BA nằm trong `docs/ba`.
 
-Database documents live under `docs/database`.
+Tài liệu database nằm trong `docs/database`.
 
-## Learning Path
+## Lộ Trình Đọc Tài Liệu BA
 
-1. Read Business Request, Stakeholder Analysis, AS-IS, and TO-BE.
-2. Review URD and SRS.
-3. Map UI to API, service, database, and test cases.
-4. Execute SIT and UAT scenarios.
-5. Analyze the sample change request and impact.
+1. Đọc Business Request và Stakeholder Analysis để hiểu bối cảnh.
+2. Đọc AS-IS và TO-BE để hiểu quy trình.
+3. Đọc URD và SRS để hiểu yêu cầu.
+4. Đọc Business Rules, ERD, Data Dictionary và Data Mapping để hiểu dữ liệu.
+5. Đọc API Specification và Traceability Matrix để hiểu cách trace yêu cầu.
+6. Đọc SIT, UAT, Change Request và Go-Live Checklist để hiểu kiểm thử, thay đổi và triển khai.
 
 ## Development Phases
 
-Current phase: PHASE 0 - Project Foundation.
+Phase hiện tại: PHASE 0 - Project Foundation.
 
-Next recommended command: START PHASE 1
+Lệnh khuyến nghị tiếp theo: START PHASE 1

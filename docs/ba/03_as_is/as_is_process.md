@@ -1,20 +1,20 @@
 # AS-IS Process
 
-1. Training Department receives training needs from business units.
-2. Training needs are consolidated in Excel.
-3. Training Department creates class plans manually.
-4. Invitations are sent through email or chat.
-5. Employees register through email or forms.
-6. Managers approve through offline messages when required.
-7. Attendance is captured in Excel sheets.
-8. Instructors send results to Training Department.
-9. Costs are collected from Finance, instructors, and employees.
-10. Reports are manually consolidated for management.
+1. Training Department nhận nhu cầu đào tạo từ các đơn vị.
+2. Nhu cầu đào tạo được tổng hợp bằng Excel.
+3. Training Department lập kế hoạch mở lớp thủ công.
+4. Thư mời học được gửi qua email hoặc chat.
+5. Nhân viên đăng ký qua email hoặc form rời.
+6. Manager phê duyệt qua email/chat khi cần.
+7. Attendance được ghi nhận bằng file Excel.
+8. Instructor gửi kết quả học tập cho Training Department.
+9. Chi phí được tổng hợp từ Finance, instructor và employee.
+10. Báo cáo được tổng hợp thủ công cho ban lãnh đạo.
 
-## Issues
+## Vấn Đề
 
-- No single source of truth.
-- High risk of duplicated registrations.
-- Attendance and results are difficult to verify.
-- Training hour and cost calculations are slow.
-- Reports cannot be filtered reliably by department, level, region, or training method.
+- Không có single source of truth.
+- Rủi ro đăng ký trùng cao.
+- Attendance và result khó kiểm chứng.
+- Tính training hours và training cost mất nhiều thời gian.
+- Report khó filter chính xác theo department, level, region hoặc training method.

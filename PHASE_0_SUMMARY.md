@@ -1,56 +1,56 @@
-# PHASE 0 SUMMARY - Project Foundation
+# PHASE 0 SUMMARY - Nền Móng Dự Án
 
-## What Was Implemented
+## Nội Dung Đã Implement
 
-- Created a Java 17 Spring Boot Maven project.
-- Added enterprise package structure under `com.example.tms`.
-- Added Spring MVC dashboard and health endpoint.
-- Added Thymeleaf login page and Bootstrap base layout with sidebar, topbar, and content area.
-- Added Spring Security skeleton with JDBC-backed users and role authorization.
-- Added global exception handler and standard API error DTO.
-- Added audit logging service skeleton.
-- Added documentation foundation for architecture, database design, BA lifecycle, tests, UAT, and change request.
+- Tạo project Maven dùng Java 17 và Spring Boot.
+- Tạo cấu trúc package doanh nghiệp trong `com.example.tms`.
+- Tạo Spring MVC dashboard và health endpoint.
+- Tạo trang login Thymeleaf và base layout Bootstrap gồm sidebar, topbar, content area.
+- Tạo skeleton Spring Security với users/roles lưu bằng JDBC.
+- Tạo Global Exception Handler và DTO lỗi chuẩn cho API.
+- Tạo skeleton Audit Log Service.
+- Tạo nền tài liệu cho architecture, database design, BA lifecycle, SIT, UAT và Change Request.
 
-## Database Changes
+## Thay Đổi Database
 
-- Configured Flyway migrations.
-- Added `V1__phase_0_security_audit_foundation.sql`.
-- Created security tables:
+- Cấu hình Flyway migration.
+- Thêm `V1__phase_0_security_audit_foundation.sql`.
+- Tạo các bảng security:
   - `users`
   - `authorities`
-- Created audit table:
+- Tạo bảng audit:
   - `audit_log`
-- Seeded demo accounts with BCrypt password hashes:
+- Seed demo accounts với BCrypt password hash:
   - `admin / Admin@123`
   - `trainingadmin / Training@123`
   - `instructor01 / Instructor@123`
   - `employee01 / Employee@123`
   - `manager01 / Manager@123`
 
-## API Added
+## API Đã Thêm
 
 - `GET /api/health`
 
-## Screens Added
+## Màn Hình Đã Thêm
 
 - `/login`
 - `/` dashboard placeholder
-- Shared layout fragment with sidebar and topbar
+- Shared layout fragment với sidebar và topbar
 
 ## Business Rules
 
-- Endpoint authorization skeleton recognizes ADMIN, TRAINING_ADMIN, INSTRUCTOR, EMPLOYEE, and MANAGER.
-- Business data rules are documented in `docs/database/business_data_rules.md` and `docs/ba/07_business_rules/business_rules.md`.
+- Skeleton phân quyền endpoint nhận diện ADMIN, TRAINING_ADMIN, INSTRUCTOR, EMPLOYEE và MANAGER.
+- Business data rules được tài liệu hóa trong `docs/database/business_data_rules.md` và `docs/ba/07_business_rules/business_rules.md`.
 
-## Test Result
+## Kết Quả Test
 
-Command executed:
+Command đã chạy:
 
 ```bash
 mvn test
 ```
 
-Result:
+Kết quả:
 
 - BUILD SUCCESS
 - Tests run: 1
@@ -58,19 +58,19 @@ Result:
 - Errors: 0
 - Skipped: 0
 
-Note: The first Maven run was blocked by sandbox permissions when writing to `~/.m2`; the command was rerun with approved escalation and passed.
+Ghi chú: Lần chạy Maven đầu tiên bị sandbox chặn khi ghi vào `~/.m2`; command đã được chạy lại với quyền được duyệt và pass.
 
-## Known Issues
+## Vấn Đề Đã Biết
 
-- Business CRUD modules are not implemented in Phase 0 by design.
-- Dashboard metrics are placeholders until Reporting in Phase 7.
-- Full 2025-2026 demo dataset is planned for Phase 8.
-- Full BA documentation expansion is planned for Phase 9.
-- Change Request CR-001 is documented but not implemented until Phase 10.
+- CRUD nghiệp vụ chưa được implement trong Phase 0 theo đúng scope.
+- Dashboard metrics đang là placeholder đến Phase 7.
+- Full demo dataset 2025-2026 nằm trong Phase 8.
+- Hoàn thiện đầy đủ tài liệu BA nằm trong Phase 9.
+- Change Request CR-001 đã được tài liệu hóa nhưng chưa implement đến Phase 10.
 
-## Next Phase
+## Phase Tiếp Theo
 
-Phase 1 should implement:
+Phase 1 nên implement:
 
 - Organization
 - Employee
@@ -78,4 +78,4 @@ Phase 1 should implement:
 - Role
 - Login refinement
 
-**Next recommended command: START PHASE 1**
+**Lệnh khuyến nghị tiếp theo: START PHASE 1**

@@ -2,44 +2,44 @@
 
 ## Title
 
-Allow employees to evaluate a course after completion.
+Cho phép employee đánh giá course sau khi hoàn thành.
 
-## Current Behaviour
+## Hiện Trạng
 
-TMS records attendance and results but does not capture learner feedback.
+TMS ghi nhận attendance và result nhưng chưa thu thập feedback của learner.
 
-## New Requirement
+## Yêu Cầu Mới
 
-After a learner completes a class, the employee can submit course evaluation scores and comments.
+Sau khi learner hoàn thành class, employee có thể submit điểm đánh giá course và comment.
 
-## Impact Analysis
+## Phân Tích Impact
 
-- New evaluation entity/table is required.
-- Employee UI needs an evaluation form.
-- Reports may include satisfaction score.
-- APIs need create and search endpoints.
-- UAT needs a new scenario.
+- Cần thêm evaluation entity/table.
+- Employee UI cần form đánh giá.
+- Report có thể bổ sung satisfaction score.
+- API cần endpoint create và search evaluation.
+- UAT cần thêm scenario mới.
 
-## Database Impact
+## Impact Database
 
-Add `course_evaluation` table with class, employee, score, comment, and submitted date.
+Thêm bảng `course_evaluation` gồm class, employee, score, comment và submitted date.
 
-## API Impact
+## Impact API
 
-Add `POST /api/classes/{id}/evaluations`.
+Thêm `POST /api/classes/{id}/evaluations`.
 
-## UI Impact
+## Impact UI
 
-Add evaluation action in employee training history.
+Thêm action đánh giá trong employee training history.
 
-## Report Impact
+## Impact Report
 
-Add average evaluation score by course, instructor, and department.
+Thêm average evaluation score theo course, instructor và department.
 
-## Test Impact
+## Impact Test
 
-Add tests for completed learners, duplicate evaluation prevention, and score validation.
+Thêm test cho completed learner, chống duplicate evaluation và validate score.
 
-## Implementation Status
+## Trạng Thái Implement
 
-Planned for Phase 10. Not implemented in Phase 0.
+Dự kiến ở Phase 10. Chưa implement trong Phase 0.

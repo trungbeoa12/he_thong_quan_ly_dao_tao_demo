@@ -1,23 +1,23 @@
 # TO-BE Process
 
-1. Training Admin creates course catalog in TMS.
-2. Training Admin opens classes from approved courses.
-3. System publishes class schedule and registration window.
-4. Employee registers for an open class.
-5. Manager approves when approval is required.
-6. Instructor views assigned class and learner list.
-7. Instructor records attendance per session.
-8. Training Admin or Instructor records training results.
-9. Finance or Training Admin records training costs.
-10. Management views dashboard and analytics reports.
+1. Training Admin tạo danh mục course trong TMS.
+2. Training Admin mở class từ course đã được duyệt.
+3. System công bố lịch học và registration window.
+4. Employee đăng ký class đang mở.
+5. Manager approve nếu class/course yêu cầu approval.
+6. Instructor xem class được phân công và danh sách học viên.
+7. Instructor ghi nhận attendance theo từng session.
+8. Training Admin hoặc Instructor ghi nhận training result.
+9. Finance hoặc Training Admin ghi nhận training cost.
+10. Ban lãnh đạo xem dashboard và analytics report.
 
-## Actor and System Actions
+## Actor Và System Action
 
 | Actor | Action | System Response |
 | --- | --- | --- |
-| Training Admin | Create class | Validate course, instructor, schedule, capacity |
-| Employee | Register class | Validate registration window and duplicate registration |
-| Manager | Approve request | Update approval status and audit action |
-| Instructor | Record attendance | Validate attended hours and registered learners |
-| Finance | Record cost | Classify cost by cost type |
-| Management | View report | Aggregate hours, cost, completion rate, pass rate |
+| Training Admin | Tạo class | Validate course, instructor, schedule, capacity |
+| Employee | Đăng ký class | Validate registration window và duplicate registration |
+| Manager | Approve request | Cập nhật approval status và audit action |
+| Instructor | Ghi attendance | Validate attended hours và registered learners |
+| Finance | Ghi cost | Phân loại cost theo cost type |
+| Ban lãnh đạo | Xem report | Tổng hợp hours, cost, completion rate, pass rate |

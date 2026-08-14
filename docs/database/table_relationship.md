@@ -1,23 +1,23 @@
 # Table Relationship
 
-| Relationship | Cardinality | Business Meaning |
+| Relationship | Cardinality | Ý nghĩa nghiệp vụ |
 | --- | --- | --- |
-| department -> department | 1 to many | A department may have child departments. |
-| department -> employee | 1 to many | Each employee belongs to one department. |
-| employee -> instructor | 1 to 0..1 | An internal instructor may also be an employee. |
-| course -> training_class | 1 to many | One course can be opened as many classes. |
-| instructor -> training_class | 1 to many | One instructor can teach many classes. |
-| training_class -> training_session | 1 to many | A class has multiple sessions. |
-| training_class -> training_registration | 1 to many | A class has many employee registrations. |
-| employee -> training_registration | 1 to many | An employee can register for many classes. |
-| training_session -> attendance | 1 to many | Each session records attendance per employee. |
-| training_class -> training_result | 1 to many | A class has final results for learners. |
-| training_class -> training_cost | 1 to many | A class has cost lines by cost type. |
+| department -> department | 1 to many | Một phòng ban có thể có nhiều phòng ban con. |
+| department -> employee | 1 to many | Mỗi nhân viên thuộc một phòng ban. |
+| employee -> instructor | 1 to 0..1 | Giảng viên nội bộ có thể đồng thời là nhân viên. |
+| course -> training_class | 1 to many | Một course có thể mở nhiều lớp. |
+| instructor -> training_class | 1 to many | Một giảng viên có thể dạy nhiều lớp. |
+| training_class -> training_session | 1 to many | Một lớp có nhiều buổi học. |
+| training_class -> training_registration | 1 to many | Một lớp có nhiều lượt đăng ký. |
+| employee -> training_registration | 1 to many | Một nhân viên có thể đăng ký nhiều lớp. |
+| training_session -> attendance | 1 to many | Mỗi buổi học ghi nhận điểm danh theo từng học viên. |
+| training_class -> training_result | 1 to many | Một lớp có kết quả cuối cùng cho từng học viên. |
+| training_class -> training_cost | 1 to many | Một lớp có nhiều dòng chi phí theo cost type. |
 
 ## Referential Rules
 
-- Attendance can only be recorded for employees registered in the related class.
-- Training Result can only be created for registered employees.
-- Training Cost must reference a class and may reference an employee or instructor depending on cost type.
-- Training Session dates must be inside the class start and end dates.
-- A completed or cancelled class cannot accept new registrations.
+- Chỉ được ghi attendance cho employee đã đăng ký lớp liên quan.
+- Chỉ được tạo Training Result cho employee đã đăng ký lớp.
+- Training Cost bắt buộc tham chiếu class và có thể tham chiếu employee hoặc instructor tùy cost type.
+- Training Session date phải nằm trong khoảng start date và end date của class.
+- Class đã COMPLETED hoặc CANCELLED không được nhận đăng ký mới.

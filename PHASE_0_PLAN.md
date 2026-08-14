@@ -1,71 +1,71 @@
-# PHASE 0 PLAN - Project Foundation
+# PHASE 0 PLAN - Nền Móng Dự Án
 
-## Objective
+## Mục Tiêu
 
-Build the technical and documentation foundation for Training Management System (TMS) without implementing business CRUD modules from later phases.
+Xây dựng nền tảng kỹ thuật và tài liệu cho Training Management System (TMS), không triển khai CRUD nghiệp vụ thuộc các phase sau.
 
-## Business Requirements
+## Yêu Cầu Nghiệp Vụ
 
-- Establish an enterprise-style Spring Boot project structure for BA traceability.
-- Define the target database model for all TMS modules.
-- Prepare authentication and role-based authorization skeleton.
-- Prepare base Thymeleaf and Bootstrap UI shell.
-- Prepare documentation folders for the full BA learning lifecycle.
+- Thiết lập cấu trúc project Spring Boot theo phong cách doanh nghiệp để BA dễ trace.
+- Thiết kế mô hình database mục tiêu cho toàn bộ module TMS.
+- Chuẩn bị skeleton authentication và role-based authorization.
+- Chuẩn bị layout Thymeleaf + Bootstrap cơ bản.
+- Chuẩn bị cấu trúc tài liệu cho toàn bộ vòng đời học BA.
 
-## Features
+## Chức Năng
 
-- Spring Boot application bootstrap.
-- Global exception handler.
-- Security login/logout skeleton.
-- JDBC-backed demo users and authorities.
-- Audit logging service skeleton.
-- Dashboard placeholder for future KPI implementation.
-- Health API endpoint for smoke testing.
+- Bootstrap ứng dụng Spring Boot.
+- Global Exception Handler.
+- Skeleton login/logout bằng Spring Security.
+- Demo users và authorities lưu bằng JDBC.
+- Skeleton Audit Log Service.
+- Dashboard placeholder cho KPI ở phase sau.
+- Health API endpoint để smoke test.
 
-## Database Changes
+## Thay Đổi Database
 
-- Flyway enabled.
-- Initial migration creates Spring Security tables: `users`, `authorities`.
-- Initial migration creates `audit_log` table.
-- Target enterprise ERD documented under `docs/database/`.
+- Bật Flyway.
+- Migration đầu tiên tạo bảng Spring Security: `users`, `authorities`.
+- Migration đầu tiên tạo bảng `audit_log`.
+- ERD mục tiêu được tài liệu hóa trong `docs/database/`.
 
 ## API
 
-- `GET /api/health` returns application health status.
-- Future business APIs are documented only; implementation starts in later phases.
+- `GET /api/health` trả về trạng thái ứng dụng.
+- API nghiệp vụ tương lai chỉ được tài liệu hóa, chưa implement trong Phase 0.
 
 ## UI
 
-- Login page.
-- Bootstrap sidebar, topbar, and main content layout.
-- Dashboard placeholder with KPI cards marked for Phase 7.
+- Trang login.
+- Layout Bootstrap gồm sidebar, topbar và main content.
+- Dashboard placeholder với KPI card đánh dấu cho Phase 7.
 
 ## Business Rules
 
-- Role-based access skeleton recognizes ADMIN, TRAINING_ADMIN, INSTRUCTOR, EMPLOYEE, and MANAGER.
-- Business module rules are documented in Phase 0 and implemented in later phases.
+- Skeleton phân quyền nhận diện ADMIN, TRAINING_ADMIN, INSTRUCTOR, EMPLOYEE và MANAGER.
+- Business rule của module nghiệp vụ được tài liệu hóa ở Phase 0 và implement ở phase sau.
 
 ## Validation
 
-- Spring Validation dependency configured.
-- Global validation error response DTO created.
+- Đã cấu hình dependency Spring Validation.
+- Đã tạo DTO chuẩn cho validation error response.
 
 ## Test Cases
 
-- Application context load test.
-- Manual smoke path: `/login`, `/`, `/api/health`.
+- Test load Spring application context.
+- Smoke path thủ công: `/login`, `/`, `/api/health`.
 
-## Files to Create
+## File Cần Tạo
 
-- Maven project files and Spring Boot source tree.
+- Maven project files và source tree Spring Boot.
 - `src/main/resources/application.yml`.
 - `src/main/resources/db/migration/V1__phase_0_security_audit_foundation.sql`.
 - Thymeleaf layout, login, dashboard templates.
 - `docs/database/*`.
-- `docs/ba/*` folder structure and starter BA documents.
+- Cấu trúc thư mục và tài liệu starter trong `docs/ba/*`.
 - `README.md`.
 - `PHASE_0_SUMMARY.md`.
 
-## Files to Modify
+## File Cần Chỉnh Sửa
 
-- None. The repository is empty at the start of Phase 0.
+- Không có. Repository trống ở thời điểm bắt đầu Phase 0.

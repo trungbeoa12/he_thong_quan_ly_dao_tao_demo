@@ -2,11 +2,11 @@
 
 ## 1. Introduction
 
-This SRS translates TMS business requirements into functional and technical behavior.
+SRS này chuyển yêu cầu nghiệp vụ của TMS thành hành vi chức năng và kỹ thuật.
 
 ## 2. System Overview
 
-TMS is a Spring Boot web application with Thymeleaf UI, REST APIs, Spring Security, JPA, and Flyway.
+TMS là ứng dụng web Spring Boot dùng Thymeleaf UI, REST API, Spring Security, JPA và Flyway.
 
 ## 3. User Roles
 
@@ -16,76 +16,76 @@ ADMIN, TRAINING_ADMIN, INSTRUCTOR, EMPLOYEE, MANAGER.
 
 ### FR-COURSE-001
 
-Requirement Name: Create Course  
+Tên requirement: Tạo Course  
 Actor: TRAINING_ADMIN  
-Pre-condition: Actor is authenticated and authorized.  
-Trigger: Actor submits course creation form.  
-Main Flow: Validate input, save course, audit action, show success.  
-Alternative Flow: Actor cancels form.  
-Exception Flow: Duplicate course code returns validation error.  
-Business Rules: Course code is unique.  
-Validation Rules: Mandatory name, category, training type, training method, duration.  
-Post-condition: Course is available for class opening.  
-Acceptance Criteria: A valid course can be created and searched.
+Pre-condition: Actor đã login và có quyền.  
+Trigger: Actor submit form tạo course.  
+Main Flow: Validate input, lưu course, ghi audit action, hiển thị success.  
+Alternative Flow: Actor hủy form.  
+Exception Flow: Course code bị trùng thì trả validation error.  
+Business Rules: Course code là unique.  
+Validation Rules: Bắt buộc name, category, training type, training method, duration.  
+Post-condition: Course sẵn sàng để mở class.  
+Acceptance Criteria: Course hợp lệ có thể được tạo và search.
 
 ### FR-CLASS-001
 
-Requirement Name: Open Training Class  
+Tên requirement: Mở Training Class  
 Actor: TRAINING_ADMIN  
-Pre-condition: Course and instructor exist.  
-Trigger: Actor creates a class from a course.  
-Main Flow: Validate date, capacity, registration period, save class.  
-Exception Flow: End date before start date is rejected.  
-Business Rules: Class belongs to exactly one course.  
-Validation Rules: Capacity greater than zero.  
-Post-condition: Class can be opened for registration.  
-Acceptance Criteria: A class can be traced to its course and instructor.
+Pre-condition: Course và instructor đã tồn tại.  
+Trigger: Actor tạo class từ course.  
+Main Flow: Validate date, capacity, registration period, lưu class.  
+Exception Flow: End date trước start date thì bị reject.  
+Business Rules: Class thuộc đúng một course.  
+Validation Rules: Capacity lớn hơn 0.  
+Post-condition: Class có thể mở registration.  
+Acceptance Criteria: Class trace được tới course và instructor.
 
 ### FR-ATTENDANCE-001
 
-Requirement Name: Record Attendance  
+Tên requirement: Ghi Attendance  
 Actor: INSTRUCTOR  
-Pre-condition: Learner is registered in class.  
-Trigger: Instructor opens a session attendance sheet.  
-Main Flow: Record attendance status and attended hours.  
-Exception Flow: Attended hours greater than session duration is rejected.  
+Pre-condition: Learner đã đăng ký class.  
+Trigger: Instructor mở attendance sheet của session.  
+Main Flow: Ghi attendance status và attended hours.  
+Exception Flow: Attended hours lớn hơn session duration thì bị reject.  
 Business Rules: BRULE-003.  
-Validation Rules: Attendance status is mandatory.  
-Post-condition: Training hours are available for reports.  
-Acceptance Criteria: Attendance contributes to actual training hours.
+Validation Rules: Attendance status là bắt buộc.  
+Post-condition: Training hours sẵn sàng cho report.  
+Acceptance Criteria: Attendance đóng góp vào actual training hours.
 
 ## 5. Business Rules
 
-See `../07_business_rules/business_rules.md`.
+Xem `../07_business_rules/business_rules.md`.
 
 ## 6. Data Requirements
 
-See `../../database/data_dictionary.md`.
+Xem `../../database/data_dictionary.md`.
 
 ## 7. Validation Rules
 
-Validation is applied at DTO and service levels.
+Validation được áp dụng ở DTO layer và Service layer.
 
 ## 8. UI Behaviour
 
-The UI uses a sidebar, topbar, list screens, form screens, and report filters.
+UI dùng sidebar, topbar, list screen, form screen và report filter.
 
 ## 9. API Behaviour
 
-REST APIs return JSON for integration and reporting exercises.
+REST API trả JSON để hỗ trợ integration và kiểm chứng report bằng dữ liệu.
 
 ## 10. Error Handling
 
-Validation errors return a standard API error response.
+Validation error trả về standard API error response.
 
 ## 11. Security Requirements
 
-Role-based endpoint access is required for all business modules.
+Tất cả module nghiệp vụ cần kiểm soát truy cập theo role.
 
 ## 12. Reporting Requirements
 
-Reports aggregate attendance, results, and costs by business filters.
+Report tổng hợp attendance, result và cost theo filter nghiệp vụ.
 
 ## 13. Audit Requirements
 
-Create, update, delete, approval, attendance, result, and cost actions must be auditable.
+Các thao tác create, update, delete, approval, attendance, result và cost phải có audit.

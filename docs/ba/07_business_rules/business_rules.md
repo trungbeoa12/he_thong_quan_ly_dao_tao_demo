@@ -2,13 +2,13 @@
 
 | Rule ID | Rule |
 | --- | --- |
-| BRULE-001 | One employee cannot register twice for the same class. |
-| BRULE-002 | Training Result can only be entered for employees registered in the class. |
-| BRULE-003 | Attended Hours cannot be greater than Session Duration. |
-| BRULE-004 | Training Session date must be within Training Class start and end dates. |
-| BRULE-005 | COMPLETED classes do not allow new registration. |
-| BRULE-006 | CANCELLED classes do not allow attendance or result entry. |
-| BRULE-007 | Registration outside registration window is rejected. |
-| BRULE-008 | PASS rate excludes NOT_COMPLETED learners from passed count. |
-| BRULE-009 | Instructor fee should equal hourly rate multiplied by teaching hours unless overridden with audit note. |
-| BRULE-010 | Training cost reports must include all cost types in the selected reporting scope. |
+| BRULE-001 | Một nhân viên không được đăng ký hai lần cùng một class. |
+| BRULE-002 | Training Result chỉ được nhập cho employee đã đăng ký class. |
+| BRULE-003 | Attended Hours không được lớn hơn Session Duration. |
+| BRULE-004 | Training Session date phải nằm trong start date và end date của Training Class. |
+| BRULE-005 | Class COMPLETED không cho phép đăng ký mới. |
+| BRULE-006 | Class CANCELLED không cho phép nhập attendance hoặc result. |
+| BRULE-007 | Registration ngoài registration window phải bị reject. |
+| BRULE-008 | PASS rate không tính NOT_COMPLETED vào passed count. |
+| BRULE-009 | Instructor fee nên bằng hourly rate nhân với teaching hours, trừ khi override có audit note. |
+| BRULE-010 | Training cost report phải bao gồm tất cả cost type trong phạm vi báo cáo đã chọn. |

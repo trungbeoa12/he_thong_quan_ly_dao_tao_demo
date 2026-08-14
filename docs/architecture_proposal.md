@@ -1,46 +1,46 @@
-# Architecture Proposal
+# Đề Xuất Kiến Trúc
 
-## Context
+## Bối Cảnh
 
-Training Management System (TMS) is a demo enterprise application for corporate training management and BA education. The system must be readable, traceable, and realistic enough for requirement analysis, SQL exercises, UAT, and reporting validation.
+Training Management System (TMS) là ứng dụng demo theo phong cách doanh nghiệp để quản lý đào tạo nội bộ và phục vụ đào tạo BA. Hệ thống cần dễ đọc, dễ trace và đủ thực tế để học viên phân tích requirement, viết SQL, kiểm thử UAT và kiểm chứng báo cáo.
 
-## Architecture Style
+## Kiểu Kiến Trúc
 
-TMS uses a layered monolith:
+TMS dùng layered monolith:
 
 `Thymeleaf UI / REST API -> Controller -> Service -> Repository -> Database`
 
-This is intentionally simple for BA learners while still matching common enterprise Spring Boot structures.
+Cách tổ chức này đủ đơn giản cho người học BA nhưng vẫn giống cấu trúc thường gặp trong project Spring Boot doanh nghiệp.
 
-## Main Components
+## Thành Phần Chính
 
-| Component | Responsibility |
+| Component | Trách nhiệm |
 | --- | --- |
-| Controller | HTTP request handling, DTO binding, response selection |
-| Service | Business rules, transactions, orchestration |
-| Repository | Data access through Spring Data JPA |
-| Entity | Database persistence model |
-| DTO | API/UI payload model |
-| Mapper | DTO/entity conversion |
-| Security | Login, logout, roles, endpoint authorization |
-| Exception Handler | Standard error response |
-| Report | Aggregation and analytics queries |
-| Audit | Important action logging |
+| Controller | Nhận HTTP request, bind DTO, chọn response/view |
+| Service | Xử lý business rules, transaction và orchestration |
+| Repository | Truy cập dữ liệu qua Spring Data JPA |
+| Entity | Mô hình persistence ánh xạ database |
+| DTO | Payload cho API/UI |
+| Mapper | Chuyển đổi DTO/entity |
+| Security | Login, logout, role và endpoint authorization |
+| Exception Handler | Chuẩn hóa error response |
+| Report | Query tổng hợp và analytics |
+| Audit | Ghi log các thao tác quan trọng |
 
 ## Security
 
-Phase 0 provides Spring Security login/logout with JDBC-backed users and authorities. Later phases will extend this into user, role, and permission management screens.
+Phase 0 cung cấp login/logout bằng Spring Security với users và authorities lưu bằng JDBC. Các phase sau sẽ mở rộng thành màn hình quản lý user, role và permission.
 
 ## Database
 
-PostgreSQL is the preferred runtime database. H2 is configured for local foundation smoke testing. Flyway owns schema migrations.
+PostgreSQL là database runtime ưu tiên. H2 được cấu hình để smoke test local trong giai đoạn foundation. Flyway chịu trách nhiệm quản lý schema migration.
 
-## Traceability Approach
+## Cách Trace Yêu Cầu
 
-Each later feature should maintain traceability:
+Mỗi chức năng ở phase sau cần duy trì traceability:
 
-`Business Requirement -> SRS Requirement -> UI Screen -> API -> Service -> Repository -> Table -> Test Case`
+`Yêu cầu nghiệp vụ -> SRS Requirement -> UI Screen -> API -> Service -> Repository -> Table -> Test Case`
 
-Example:
+Ví dụ:
 
 `FR-ATTENDANCE-003 -> AttendanceController -> AttendanceService -> AttendanceRepository -> attendance -> TC-ATT-003`
