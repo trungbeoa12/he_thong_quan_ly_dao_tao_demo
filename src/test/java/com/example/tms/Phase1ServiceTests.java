@@ -16,9 +16,17 @@ import com.example.tms.service.EmployeeService;
 import com.example.tms.service.UserManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class Phase1ServiceTests {
 
     @Autowired
@@ -29,6 +37,9 @@ class Phase1ServiceTests {
 
     @Autowired
     private UserManagementService userManagementService;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
     void createsDepartment() {
@@ -73,6 +84,14 @@ class Phase1ServiceTests {
 
         assertThat(created.username()).startsWith("phase1-");
         assertThat(created.roles()).contains("ROLE_EMPLOYEE");
+    }
+
+    @Test
+    void returnsEmployeesAsJsonWithBasicAuth() throws Exception {
+        mockMvc.perform(get("/api/employees").with(httpBasic("admin", "Admin@123")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$[0].employeeCode").isNotEmpty());
     }
 
     private String suffix() {
