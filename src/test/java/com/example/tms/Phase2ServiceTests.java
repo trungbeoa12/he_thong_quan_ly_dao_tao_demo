@@ -21,7 +21,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -84,6 +86,14 @@ class Phase2ServiceTests {
         mockMvc.perform(get("/instructors/new")).andExpect(status().isOk());
         mockMvc.perform(get("/courses")).andExpect(status().isOk());
         mockMvc.perform(get("/courses/new")).andExpect(status().isOk());
+    }
+
+    @Test
+    void returnsCoursesAsJsonWithBasicAuth() throws Exception {
+        mockMvc.perform(get("/api/courses").with(httpBasic("admin", "Admin@123")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$[0].courseCode").isNotEmpty());
     }
 
     private String suffix() {

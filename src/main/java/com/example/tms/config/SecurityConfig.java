@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/employee/**").hasAnyRole("ADMIN", "EMPLOYEE")
                         .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
                         .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
                 .formLogin(login -> login
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
