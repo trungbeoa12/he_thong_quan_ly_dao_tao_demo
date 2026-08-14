@@ -6,7 +6,7 @@ TMS là hệ thống demo quản lý đào tạo theo phong cách project doanh 
 
 Bối cảnh nghiệp vụ mục tiêu là một doanh nghiệp có khoảng 3.000 đến 5.000 nhân viên, nhiều phòng ban, giảng viên nội bộ/bên ngoài, nhiều hình thức đào tạo, chi phí đào tạo, điểm danh, kết quả học tập và báo cáo phân tích trong 2 năm demo: 2025 và 2026.
 
-Phase 0 chỉ xây dựng nền móng. Các module nghiệp vụ được triển khai ở những phase sau.
+Phase 0 chỉ xây dựng nền móng. Các module nghiệp vụ được triển khai ở những phase sau. Từ phase migrate database, MySQL là database runtime chính cho local development.
 
 ## Kiến Trúc
 
@@ -40,12 +40,14 @@ Cấu trúc package:
 - Thymeleaf
 - Bootstrap 5
 - Flyway
-- PostgreSQL ưu tiên, H2 dùng cho smoke test local
+- MySQL 8 cho local development
+- H2 chỉ dùng cho automated test
 - Maven
 
 ## Cài Đặt
 
 ```bash
+docker compose up -d
 mvn clean test
 mvn spring-boot:run
 ```
@@ -55,21 +57,64 @@ Mở:
 - `http://localhost:8080/login`
 - `http://localhost:8080/api/health`
 
-## Cấu Hình Database
+## Cấu Hình Database MySQL
 
-Mặc định ứng dụng dùng H2 in-memory ở chế độ tương thích PostgreSQL.
+Mặc định ứng dụng dùng MySQL local.
 
-Nếu dùng PostgreSQL:
+Thông tin mặc định khi chạy bằng Docker Compose:
+
+- Database: `training_management`
+- Host: `localhost`
+- Port: `3306`
+- Username: `tms`
+- Password: `tms123`
+
+Chạy MySQL:
 
 ```bash
-export DB_URL=jdbc:postgresql://localhost:5432/tms
+docker compose up -d
+```
+
+Chạy ứng dụng:
+
+```bash
+mvn spring-boot:run
+```
+
+Hoặc truyền biến môi trường:
+
+```bash
+export DB_URL='jdbc:mysql://localhost:3306/training_management?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh'
 export DB_USERNAME=tms
-export DB_PASSWORD=tms
-export DB_DRIVER=org.postgresql.Driver
+export DB_PASSWORD=tms123
 mvn spring-boot:run
 ```
 
 Flyway migration nằm trong `src/main/resources/db/migration`.
+
+Hibernate dùng `ddl-auto=validate`; schema phải được tạo và quản lý bằng Flyway.
+
+## Kết Nối DBeaver
+
+Tạo connection mới trong DBeaver:
+
+- Database: MySQL
+- Host: `localhost`
+- Port: `3306`
+- Database: `training_management`
+- Username: `tms`
+- Password: `tms123`
+
+SQL kiểm tra:
+
+```sql
+SELECT * FROM employee;
+SELECT * FROM instructor;
+SELECT * FROM course;
+SELECT * FROM flyway_schema_history;
+```
+
+Sau khi kết nối, schema `training_management` sẽ có các bảng nghiệp vụ hiện tại: `users`, `authorities`, `audit_log`, `department`, `employee`, `instructor`, `course`.
 
 ## Tài Khoản Demo
 
@@ -119,3 +164,5 @@ Tài liệu database nằm trong `docs/database`.
 Phase đã hoàn thành gần nhất: PHASE 2 - Instructor, Course, Course Category.
 
 Lệnh khuyến nghị tiếp theo: START PHASE 3
+
+Phase kỹ thuật đã hoàn thành: MIGRATE H2 TO MYSQL.

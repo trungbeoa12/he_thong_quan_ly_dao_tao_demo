@@ -8,7 +8,21 @@ Training Management System (TMS) là ứng dụng demo theo phong cách doanh ng
 
 TMS dùng layered monolith:
 
-`Thymeleaf UI / REST API -> Controller -> Service -> Repository -> Database`
+```text
+Browser
+   ↓
+Bootstrap UI / Thymeleaf
+   ↓
+Spring MVC Controller / REST API
+   ↓
+Service
+   ↓
+Repository
+   ↓
+JPA / Hibernate
+   ↓
+MySQL
+```
 
 Cách tổ chức này đủ đơn giản cho người học BA nhưng vẫn giống cấu trúc thường gặp trong project Spring Boot doanh nghiệp.
 
@@ -33,7 +47,19 @@ Phase 0 cung cấp login/logout bằng Spring Security với users và authoriti
 
 ## Database
 
-PostgreSQL là database runtime ưu tiên. H2 được cấu hình để smoke test local trong giai đoạn foundation. Flyway chịu trách nhiệm quản lý schema migration.
+MySQL là database runtime chính cho local development. H2 chỉ được dùng trong automated test với cấu hình riêng ở `src/test/resources/application.yml`.
+
+Flyway chịu trách nhiệm quản lý schema migration:
+
+```text
+Flyway
+   ↓
+Schema migration
+   ↓
+MySQL
+```
+
+Hibernate dùng `ddl-auto=validate` để kiểm tra mapping, không tự tạo schema bằng `create` hoặc `update`.
 
 ## Cách Trace Yêu Cầu
 
@@ -44,3 +70,7 @@ Mỗi chức năng ở phase sau cần duy trì traceability:
 Ví dụ:
 
 `FR-ATTENDANCE-003 -> AttendanceController -> AttendanceService -> AttendanceRepository -> attendance -> TC-ATT-003`
+
+Với database thật, người học BA có thể trace tiếp từ tài liệu:
+
+`URD -> SRS -> Database Design -> API -> Development -> Testing -> dữ liệu thực tế trong MySQL`

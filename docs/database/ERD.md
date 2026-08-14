@@ -92,6 +92,6 @@ erDiagram
     }
 ```
 
-Sơ đồ trên mô tả logical ERD mục tiêu cho toàn bộ hệ thống TMS. Các bảng nghiệp vụ chưa được tạo trong Phase 0, nhưng đã được thiết kế để làm căn cứ cho các phase sau.
+Sơ đồ trên mô tả logical ERD mục tiêu cho toàn bộ hệ thống TMS. Tới Phase 2, MySQL runtime đã có các bảng `users`, `authorities`, `audit_log`, `department`, `employee`, `instructor`, `course`. Các bảng nghiệp vụ như `training_class`, `training_session`, `training_registration`, `attendance`, `training_result`, `training_cost` là thiết kế mục tiêu cho các phase sau.
 
 Mô hình đầy đủ được giải thích thêm trong `data_dictionary.md` và `table_relationship.md`.
