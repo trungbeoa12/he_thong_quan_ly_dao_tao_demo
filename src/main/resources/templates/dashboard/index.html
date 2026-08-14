@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-label">Courses</div>
+                    <div class="metric-value">Phase 7</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-label">Classes</div>
+                    <div class="metric-value">Phase 7</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-label">Training Hours</div>
+                    <div class="metric-value">Phase 7</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="metric-card">
+                    <div class="metric-label">Training Cost</div>
+                    <div class="metric-value">Phase 7</div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 p-4 bg-white border rounded-2">
+            <h2 class="h5">Project Foundation</h2>
+            <p class="mb-0 text-muted">
+                Phase 0 provides the application shell, security skeleton, database migration foundation,
+                and BA documentation structure. Business modules start in Phase 1.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
