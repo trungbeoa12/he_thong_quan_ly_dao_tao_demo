@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="content-toolbar">
+            <form class="d-flex gap-2" th:action="@{/employees}" method="get">
+                <input class="form-control" name="keyword" th:value="${keyword}" placeholder="Tìm mã, tên hoặc email">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+            <a class="btn btn-primary" th:href="@{/employees/new}">Create</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <div class="table-card">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Phòng ban</th>
+                    <th>Cấp bậc</th>
+                    <th>Region</th>
+                    <th>Trạng thái</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td class="fw-semibold" th:text="${employee.employeeCode}">E0001</td>
+                    <td th:text="${employee.fullName}">Nguyễn Minh An</td>
+                    <td th:text="${employee.email}">an@example.com</td>
+                    <td th:text="${employee.departmentName}">IT</td>
+                    <td th:text="${employee.employeeLevel.label}">Chuyên viên</td>
+                    <td th:text="${employee.region ?: '-'}">North</td>
+                    <td><span class="status-pill" th:text="${employee.status.label}">Hoạt động</span></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(employees)}">
+                    <td colspan="7" class="text-center text-muted py-4">Không có dữ liệu.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

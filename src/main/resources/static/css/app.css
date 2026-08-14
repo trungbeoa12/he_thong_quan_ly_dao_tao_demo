@@ -80,6 +80,71 @@ body {
     margin-top: 12px;
 }
 
+.content-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.content-toolbar form {
+    width: min(520px, 100%);
+}
+
+.table-card,
+.form-panel {
+    background: #fff;
+    border: 1px solid var(--tms-border);
+    border-radius: 8px;
+}
+
+.form-panel {
+    padding: 24px;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 22px;
+}
+
+.form-actions {
+    border-top: 1px solid var(--tms-border);
+    margin-top: 24px;
+    padding-top: 18px;
+}
+
+.invalid-text {
+    color: #b42318;
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+.status-pill,
+.role-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    border-radius: 999px;
+    padding: 2px 9px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.status-pill {
+    background: #e6f4f1;
+    color: #0f766e;
+}
+
+.role-pill {
+    background: #eef2ff;
+    color: #3444a7;
+    margin-right: 6px;
+}
+
 .login-page {
     min-height: 100vh;
     display: grid;

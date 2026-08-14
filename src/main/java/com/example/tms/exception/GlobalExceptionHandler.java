@@ -31,6 +31,16 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.BAD_REQUEST, "Constraint violation", request.getRequestURI(), details);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    ResponseEntity<ApiErrorResponse> handleBusiness(BusinessException ex, HttpServletRequest request) {
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), List.of());
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    ResponseEntity<ApiErrorResponse> handleNotFound(ResourceNotFoundException ex, HttpServletRequest request) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), List.of());
+    }
+
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiErrorResponse> handleUnexpected(Exception ex, HttpServletRequest request) {
         return build(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), request.getRequestURI(), List.of());

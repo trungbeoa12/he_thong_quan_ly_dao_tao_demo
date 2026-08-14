@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <form class="form-panel" th:action="@{/admin/users}" th:object="${user}" method="post">
+            <div class="form-header">
+                <div>
+                    <h2 class="h5 mb-1">Tạo user</h2>
+                    <p class="text-muted mb-0">Password được encode bằng BCrypt trước khi lưu database.</p>
+                </div>
+                <a class="btn btn-outline-secondary" th:href="@{/admin/users}">Back</a>
+            </div>
+
+            <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-control" id="username" th:field="*{username}">
+                    <div class="invalid-text" th:errors="*{username}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control" id="password" type="password" th:field="*{password}">
+                    <div class="invalid-text" th:errors="*{password}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="role">Role</label>
+                    <select class="form-select" id="role" th:field="*{role}">
+                        <option th:each="roleValue : ${roles}" th:value="${roleValue}" th:text="${roleValue.displayName}"></option>
+                    </select>
+                    <div class="invalid-text" th:errors="*{role}"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" id="enabled" type="checkbox" th:field="*{enabled}">
+                        <label class="form-check-label" for="enabled">Enabled</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

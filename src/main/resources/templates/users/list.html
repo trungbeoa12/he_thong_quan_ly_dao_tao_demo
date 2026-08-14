@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="content-toolbar">
+            <div>
+                <h2 class="h5 mb-1">Users</h2>
+                <p class="text-muted mb-0">Quản lý account và role cho Spring Security.</p>
+            </div>
+            <a class="btn btn-primary" th:href="@{/admin/users/new}">Create</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <div class="table-card">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Roles</th>
+                    <th>Enabled</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td class="fw-semibold" th:text="${user.username}">admin</td>
+                    <td>
+                        <span class="role-pill" th:each="role : ${user.roles}" th:text="${role}">ROLE_ADMIN</span>
+                    </td>
+                    <td><span class="status-pill" th:text="${user.enabled ? 'Enabled' : 'Disabled'}">Enabled</span></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(users)}">
+                    <td colspan="3" class="text-center text-muted py-4">Không có dữ liệu.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

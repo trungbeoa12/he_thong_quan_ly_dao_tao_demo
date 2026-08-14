@@ -13,9 +13,9 @@
         <aside class="tms-sidebar">
             <div class="tms-brand">TMS</div>
             <nav class="nav flex-column">
-                <a class="nav-link active" th:href="@{/}">Dashboard</a>
-                <a class="nav-link" href="#">Employees</a>
-                <a class="nav-link" href="#">Departments</a>
+                <a class="nav-link" th:href="@{/}">Dashboard</a>
+                <a class="nav-link" th:href="@{/employees}">Employees</a>
+                <a class="nav-link" th:href="@{/departments}">Departments</a>
                 <a class="nav-link" href="#">Instructors</a>
                 <a class="nav-link" href="#">Courses</a>
                 <a class="nav-link" href="#">Training Classes</a>
@@ -25,7 +25,7 @@
                 <a class="nav-link" href="#">Results</a>
                 <a class="nav-link" href="#">Training Cost</a>
                 <a class="nav-link" href="#">Reports</a>
-                <a class="nav-link" href="#">Users</a>
+                <a class="nav-link" th:href="@{/admin/users}">Users</a>
                 <a class="nav-link" href="#">System Configuration</a>
             </nav>
         </aside>

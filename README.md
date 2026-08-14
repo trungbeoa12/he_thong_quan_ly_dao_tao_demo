@@ -116,6 +116,6 @@ Tài liệu database nằm trong `docs/database`.
 
 ## Development Phases
 
-Phase hiện tại: PHASE 0 - Project Foundation.
+Phase đã hoàn thành gần nhất: PHASE 1 - Organization, Employee, User, Role.
 
-Lệnh khuyến nghị tiếp theo: START PHASE 1
+Lệnh khuyến nghị tiếp theo: START PHASE 2

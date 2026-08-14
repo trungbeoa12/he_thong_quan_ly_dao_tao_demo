@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="content-toolbar">
+            <form class="d-flex gap-2" th:action="@{/departments}" method="get">
+                <input class="form-control" name="keyword" th:value="${keyword}" placeholder="Tìm mã hoặc tên phòng ban">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+            <a class="btn btn-primary" th:href="@{/departments/new}">Create</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <div class="table-card">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên phòng ban</th>
+                    <th>Phòng ban cha</th>
+                    <th>Loại</th>
+                    <th>Trạng thái</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="department : ${departments}">
+                    <td class="fw-semibold" th:text="${department.departmentCode}">IT</td>
+                    <td th:text="${department.departmentName}">Khối CNTT</td>
+                    <td th:text="${department.parentDepartmentName ?: '-'}">Head Office</td>
+                    <td th:text="${department.departmentType.label}">Khối</td>
+                    <td><span class="status-pill" th:text="${department.status.label}">Hoạt động</span></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(departments)}">
+                    <td colspan="5" class="text-center text-muted py-4">Không có dữ liệu.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
