@@ -1,5 +1,5 @@
 create table department (
-    id bigserial primary key,
+    id bigint not null auto_increment primary key,
     department_code varchar(50) not null unique,
     department_name varchar(255) not null,
     parent_department_id bigint,
@@ -11,7 +11,7 @@ create table department (
 );
 
 create table employee (
-    id bigserial primary key,
+    id bigint not null auto_increment primary key,
     employee_code varchar(50) not null unique,
     full_name varchar(255) not null,
     date_of_birth date,
@@ -62,3 +62,7 @@ insert into employee (
 ('E0008', 'Bùi Khánh Linh', '1999-05-30', 'FEMALE', 'linh.bui@example.com', '0901000008', 6, 'Customer Service', 'Officer', '2023-02-20', 'STAFF', 'Central', 'Gen Z', 'SG1', 'ACTIVE'),
 ('E0009', 'Đặng Gia Phúc', '1991-03-09', 'MALE', 'phuc.dang@example.com', '0901000009', 8, 'Backend Developer', 'Software Engineer', '2020-10-05', 'SENIOR_STAFF', 'North', 'Millennial', 'SG3', 'ACTIVE'),
 ('E0010', 'Ngô Bảo Châu', '1994-11-14', 'FEMALE', 'chau.ngo@example.com', '0901000010', 3, 'HR Business Partner', 'HR Specialist', '2021-04-19', 'SPECIALIST', 'North', 'Millennial', 'SG3', 'ACTIVE');
+
+insert into audit_log (username, action, module, object_id, old_value, new_value, created_at) values
+('system', 'SEED', 'DEPARTMENT', '2025-2026', null, 'Seed organization master data for BA reporting demo', '2025-01-02 08:00:00'),
+('system', 'SEED', 'EMPLOYEE', '2025-2026', null, 'Seed employee master data across regions and departments', '2026-01-02 08:00:00');

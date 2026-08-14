@@ -1,5 +1,5 @@
 create table instructor (
-    id bigserial primary key,
+    id bigint not null auto_increment primary key,
     instructor_code varchar(50) not null unique,
     instructor_name varchar(255) not null,
     instructor_type varchar(30) not null,
@@ -7,19 +7,19 @@ create table instructor (
     expertise varchar(255),
     email varchar(255) not null unique,
     phone varchar(30),
-    hourly_rate numeric(18, 2) not null,
+    hourly_rate decimal(18, 2) not null,
     status varchar(20) not null
 );
 
 create table course (
-    id bigserial primary key,
+    id bigint not null auto_increment primary key,
     course_code varchar(50) not null unique,
     course_name varchar(255) not null,
     category varchar(50) not null,
     description text,
     training_type varchar(30) not null,
     training_method varchar(30) not null,
-    default_duration_hours numeric(8, 2) not null,
+    default_duration_hours decimal(8, 2) not null,
     target_audience varchar(255),
     status varchar(20) not null
 );
@@ -50,3 +50,7 @@ insert into course (
 ('C-RISK-001', 'Operational Risk Awareness', 'RISK_MANAGEMENT', 'Nhận diện rủi ro vận hành trong hoạt động ngân hàng.', 'EXTERNAL', 'ONLINE', 8, 'Manager, Specialist', 'ACTIVE'),
 ('C-SALES-001', 'Consultative Sales Skills', 'SALES', 'Kỹ năng bán hàng tư vấn cho đội ngũ kinh doanh.', 'EXTERNAL', 'OFFLINE', 12, 'Sales Team', 'ACTIVE'),
 ('C-LEAD-001', 'Leadership Essentials', 'LEADERSHIP', 'Năng lực lãnh đạo nền tảng cho manager.', 'EXTERNAL', 'BLENDED', 20, 'Manager', 'ACTIVE');
+
+insert into audit_log (username, action, module, object_id, old_value, new_value, created_at) values
+('system', 'SEED', 'INSTRUCTOR', '2025-2026', null, 'Seed instructor catalog for local MySQL development', '2025-01-03 08:00:00'),
+('system', 'SEED', 'COURSE', '2025-2026', null, 'Seed course catalog covering internal and external training', '2026-01-03 08:00:00');

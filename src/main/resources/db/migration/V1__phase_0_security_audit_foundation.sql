@@ -7,13 +7,12 @@ create table users (
 create table authorities (
     username varchar(50) not null,
     authority varchar(50) not null,
+    primary key (username, authority),
     constraint fk_authorities_users foreign key (username) references users(username)
 );
 
-create unique index ix_auth_username on authorities (username, authority);
-
 create table audit_log (
-    id bigserial primary key,
+    id bigint not null auto_increment primary key,
     username varchar(100) not null,
     action varchar(100) not null,
     module varchar(100) not null,
@@ -36,3 +35,6 @@ insert into authorities (username, authority) values
 ('instructor01', 'ROLE_INSTRUCTOR'),
 ('employee01', 'ROLE_EMPLOYEE'),
 ('manager01', 'ROLE_MANAGER');
+
+insert into audit_log (username, action, module, object_id, old_value, new_value, created_at) values
+('system', 'SEED', 'SECURITY', 'users', null, 'Seed demo users and authorities for local MySQL development', '2025-01-01 08:00:00');
