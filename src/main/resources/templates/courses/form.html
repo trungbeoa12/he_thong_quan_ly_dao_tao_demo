@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <form class="form-panel" th:action="@{/courses}" th:object="${course}" method="post">
+            <div class="form-header">
+                <div>
+                    <h2 class="h5 mb-1">Tạo khóa học</h2>
+                    <p class="text-muted mb-0">Danh mục khóa học chuẩn để dùng khi mở lớp ở Phase 3.</p>
+                </div>
+                <a class="btn btn-outline-secondary" th:href="@{/courses}">Back</a>
+            </div>
+
+            <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label" for="courseCode">Mã khóa học</label>
+                    <input class="form-control" id="courseCode" th:field="*{courseCode}">
+                    <div class="invalid-text" th:errors="*{courseCode}"></div>
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label" for="courseName">Tên khóa học</label>
+                    <input class="form-control" id="courseName" th:field="*{courseName}">
+                    <div class="invalid-text" th:errors="*{courseName}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="category">Category</label>
+                    <select class="form-select" id="category" th:field="*{category}">
+                        <option th:each="categoryValue : ${categories}" th:value="${categoryValue}" th:text="${categoryValue.label}"></option>
+                    </select>
+                    <div class="invalid-text" th:errors="*{category}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="trainingType">Loại đào tạo</label>
+                    <select class="form-select" id="trainingType" th:field="*{trainingType}">
+                        <option th:each="type : ${trainingTypes}" th:value="${type}" th:text="${type.label}"></option>
+                    </select>
+                    <div class="invalid-text" th:errors="*{trainingType}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="trainingMethod">Hình thức</label>
+                    <select class="form-select" id="trainingMethod" th:field="*{trainingMethod}">
+                        <option th:each="method : ${trainingMethods}" th:value="${method}" th:text="${method.label}"></option>
+                    </select>
+                    <div class="invalid-text" th:errors="*{trainingMethod}"></div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="defaultDurationHours">Thời lượng mặc định</label>
+                    <input class="form-control" id="defaultDurationHours" type="number" min="0.5" step="0.5" th:field="*{defaultDurationHours}">
+                    <div class="invalid-text" th:errors="*{defaultDurationHours}"></div>
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label" for="targetAudience">Đối tượng học viên</label>
+                    <input class="form-control" id="targetAudience" th:field="*{targetAudience}">
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label" for="description">Mô tả</label>
+                    <textarea class="form-control" id="description" rows="4" th:field="*{description}"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="status">Trạng thái</label>
+                    <select class="form-select" id="status" th:field="*{status}">
+                        <option th:each="statusValue : ${statuses}" th:value="${statusValue}" th:text="${statusValue.label}"></option>
+                    </select>
+                    <div class="invalid-text" th:errors="*{status}"></div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

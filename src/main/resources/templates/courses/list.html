@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="content-toolbar">
+            <form class="d-flex gap-2" th:action="@{/courses}" method="get">
+                <input class="form-control" name="keyword" th:value="${keyword}" placeholder="Tìm mã hoặc tên khóa học">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+            <a class="btn btn-primary" th:href="@{/courses/new}">Create</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <div class="table-card">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên khóa học</th>
+                    <th>Category</th>
+                    <th>Loại đào tạo</th>
+                    <th>Hình thức</th>
+                    <th>Thời lượng</th>
+                    <th>Đối tượng</th>
+                    <th>Trạng thái</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="course : ${courses}">
+                    <td class="fw-semibold" th:text="${course.courseCode}">C-JAVA-001</td>
+                    <td th:text="${course.courseName}">Java Core</td>
+                    <td th:text="${course.category.label}">IT</td>
+                    <td th:text="${course.trainingType.label}">Nội bộ</td>
+                    <td th:text="${course.trainingMethod.label}">Offline</td>
+                    <td th:text="${course.defaultDurationHours + ' giờ'}">8 giờ</td>
+                    <td th:text="${course.targetAudience ?: '-'}">Developer</td>
+                    <td><span class="status-pill" th:text="${course.status.label}">Hoạt động</span></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(courses)}">
+                    <td colspan="8" class="text-center text-muted py-4">Không có dữ liệu.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

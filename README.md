@@ -116,6 +116,6 @@ Tài liệu database nằm trong `docs/database`.
 
 ## Development Phases
 
-Phase đã hoàn thành gần nhất: PHASE 1 - Organization, Employee, User, Role.
+Phase đã hoàn thành gần nhất: PHASE 2 - Instructor, Course, Course Category.
 
-Lệnh khuyến nghị tiếp theo: START PHASE 2
+Lệnh khuyến nghị tiếp theo: START PHASE 3

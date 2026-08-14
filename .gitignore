@@ -1,5 +1,8 @@
 target/
 .vscode/
+.classpath
+.project
+.settings/
 .github/modernize/
 .DS_Store
 *.log

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/base :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{layout/base :: shell(~{::content})}">
+    <div th:fragment="content">
+        <div class="content-toolbar">
+            <form class="d-flex gap-2" th:action="@{/instructors}" method="get">
+                <input class="form-control" name="keyword" th:value="${keyword}" placeholder="Tìm mã, tên hoặc email giảng viên">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+            <a class="btn btn-primary" th:href="@{/instructors/new}">Create</a>
+        </div>
+
+        <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+        <div class="table-card">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên giảng viên</th>
+                    <th>Loại</th>
+                    <th>Đơn vị</th>
+                    <th>Chuyên môn</th>
+                    <th>Email</th>
+                    <th>Hourly rate</th>
+                    <th>Trạng thái</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="instructor : ${instructors}">
+                    <td class="fw-semibold" th:text="${instructor.instructorCode}">INS001</td>
+                    <td th:text="${instructor.instructorName}">Nguyễn Văn A</td>
+                    <td th:text="${instructor.instructorType.label}">Nội bộ</td>
+                    <td th:text="${instructor.organization ?: '-'}">Khối CNTT</td>
+                    <td th:text="${instructor.expertise ?: '-'}">Java</td>
+                    <td th:text="${instructor.email}">a@example.com</td>
+                    <td th:text="${#numbers.formatDecimal(instructor.hourlyRate, 0, 'COMMA', 0, 'POINT')}">0</td>
+                    <td><span class="status-pill" th:text="${instructor.status.label}">Hoạt động</span></td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(instructors)}">
+                    <td colspan="8" class="text-center text-muted py-4">Không có dữ liệu.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
