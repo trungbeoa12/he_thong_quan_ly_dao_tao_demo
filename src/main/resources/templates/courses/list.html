@@ -5,14 +5,16 @@
 <div th:replace="~{layout/base :: shell(~{::content})}">
     <div th:fragment="content">
         <div class="content-toolbar">
-            <form class="d-flex gap-2" th:action="@{/courses}" method="get">
-                <input class="form-control" name="keyword" th:value="${keyword}" placeholder="Tìm mã hoặc tên khóa học">
+            <form class="d-flex gap-2" id="course-search-form" th:action="@{/courses}" method="get">
+                <input class="form-control" id="course-keyword" name="keyword" th:value="${keyword}" placeholder="Tìm mã hoặc tên khóa học">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
+                <button class="btn btn-outline-secondary" id="course-clear-search" type="button">Clear</button>
             </form>
             <a class="btn btn-primary" th:href="@{/courses/new}">Create</a>
         </div>
 
         <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+        <div class="text-muted small mb-2" id="course-search-result"></div>
 
         <div class="table-card">
             <table class="table table-hover align-middle mb-0">
@@ -28,7 +30,7 @@
                     <th>Trạng thái</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="course-table-body">
                 <tr th:each="course : ${courses}">
                     <td class="fw-semibold" th:text="${course.courseCode}">C-JAVA-001</td>
                     <td th:text="${course.courseName}">Java Core</td>
@@ -47,28 +49,125 @@
         </div>
 
         <script th:inline="javascript">
-            const courseKeyword = /*[[${keyword}]]*/ "";
-            const courseApiUrl = courseKeyword
-                ? `/api/courses?keyword=${encodeURIComponent(courseKeyword)}`
-                : "/api/courses";
+            const courseSearchForm = document.querySelector("#course-search-form");
+            const courseKeywordInput = document.querySelector("#course-keyword");
+            const courseClearSearchButton = document.querySelector("#course-clear-search");
+            const courseTableBody = document.querySelector("#course-table-body");
+            const courseSearchResult = document.querySelector("#course-search-result");
 
-            fetch(courseApiUrl, {
-                headers: {
-                    Accept: "application/json"
+            const enumLabels = {
+                categories: {
+                    BANKING: "Banking",
+                    IT: "IT",
+                    DATA: "Data",
+                    MANAGEMENT: "Management",
+                    LEADERSHIP: "Leadership",
+                    COMPLIANCE: "Compliance",
+                    SOFT_SKILLS: "Soft Skills",
+                    RISK_MANAGEMENT: "Risk Management",
+                    SALES: "Sales"
+                },
+                trainingTypes: {
+                    INTERNAL: "Nội bộ",
+                    EXTERNAL: "Bên ngoài"
+                },
+                trainingMethods: {
+                    OFFLINE: "Offline",
+                    ONLINE: "Online",
+                    E_LEARNING: "E-Learning",
+                    BLENDED: "Blended"
+                },
+                statuses: {
+                    ACTIVE: "Hoạt động",
+                    INACTIVE: "Ngừng hoạt động"
                 }
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`Không gọi được API khóa học: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then((courses) => {
-                    console.log("Dữ liệu API /api/courses:", courses);
-                })
-                .catch((error) => {
-                    console.error(error);
+            };
+
+            const createTextCell = (value, className) => {
+                const cell = document.createElement("td");
+                if (className) {
+                    cell.className = className;
+                }
+                cell.textContent = value || "-";
+                return cell;
+            };
+
+            const renderCourses = (courses) => {
+                courseTableBody.replaceChildren();
+
+                if (courses.length === 0) {
+                    const row = document.createElement("tr");
+                    const cell = document.createElement("td");
+                    cell.colSpan = 8;
+                    cell.className = "text-center text-muted py-4";
+                    cell.textContent = "Không có dữ liệu.";
+                    row.appendChild(cell);
+                    courseTableBody.appendChild(row);
+                    courseSearchResult.textContent = "Tìm thấy 0 khóa học";
+                    return;
+                }
+
+                courses.forEach((course) => {
+                    const row = document.createElement("tr");
+                    row.appendChild(createTextCell(course.courseCode, "fw-semibold"));
+                    row.appendChild(createTextCell(course.courseName));
+                    row.appendChild(createTextCell(enumLabels.categories[course.category] || course.category));
+                    row.appendChild(createTextCell(enumLabels.trainingTypes[course.trainingType] || course.trainingType));
+                    row.appendChild(createTextCell(enumLabels.trainingMethods[course.trainingMethod] || course.trainingMethod));
+                    row.appendChild(createTextCell(`${course.defaultDurationHours} giờ`));
+                    row.appendChild(createTextCell(course.targetAudience));
+
+                    const statusCell = document.createElement("td");
+                    const status = document.createElement("span");
+                    status.className = "status-pill";
+                    status.textContent = enumLabels.statuses[course.status] || course.status;
+                    statusCell.appendChild(status);
+                    row.appendChild(statusCell);
+
+                    courseTableBody.appendChild(row);
                 });
+
+                courseSearchResult.textContent = `Tìm thấy ${courses.length} khóa học`;
+            };
+
+            const loadCourses = (keyword = "") => {
+                const trimmedKeyword = keyword.trim();
+                const courseApiUrl = trimmedKeyword
+                    ? `/api/courses?keyword=${encodeURIComponent(trimmedKeyword)}`
+                    : "/api/courses";
+
+                fetch(courseApiUrl, {
+                    headers: {
+                        Accept: "application/json"
+                    }
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`Không gọi được API khóa học: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((courses) => {
+                        console.log("Dữ liệu API /api/courses:", courses);
+                        renderCourses(courses);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        courseSearchResult.textContent = "Không gọi được API khóa học";
+                    });
+            };
+
+            courseSearchForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                loadCourses(courseKeywordInput.value);
+            });
+
+            courseClearSearchButton.addEventListener("click", () => {
+                courseKeywordInput.value = "";
+                loadCourses();
+            });
+
+            loadCourses(/*[[${keyword}]]*/ "");
         </script>
     </div>
 </div>
